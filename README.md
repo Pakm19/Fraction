@@ -32,6 +32,8 @@ public:
 };
 
 /// FRACTION.CPP
+
+	
 #include "PhanSo.h"
 #include <iostream>
 
