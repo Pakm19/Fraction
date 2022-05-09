@@ -1,0 +1,97 @@
+# Practice_OOP_UIT
+Basic operations with fractions
+//File.h
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+class HocSinh
+{
+private:
+	string Hoten;
+	string Mssv;
+	string Sdt;
+	float DTB;
+public:
+	void Nhap();
+	void Xuat();
+
+};
+
+
+//File.cpp
+#include "HocSinh.h"
+#include <string>
+
+using namespace std;
+
+int Kiem_tra_chuoi_so(string s)
+{
+	int dem = 0;
+	for (int i = 0;i < s.length();i++)
+	{
+		if (s[i] >= 48 && s[i] <= 57)
+		{
+			dem++;
+		}
+		else if (s[i] = 0)
+		{
+			dem++;
+		}
+	}
+	return dem;
+}
+
+/// <summary>
+/// /ngo thanh phat 
+/// </summary>
+void HocSinh::Nhap()
+{
+	do{
+		cout << "Nhap ho ten hoc sinh:";
+		getline(cin,Hoten);
+	} while (Hoten.length() > 24 || Kiem_tra_chuoi_so(Hoten) > 0);
+	//cin.ignore();
+	do {
+		cout << "Nhap mssv: ";
+		getline(cin, Mssv);
+	} while (Mssv.length() < 8  ||  Mssv.length() > 8);
+	do
+	{
+		cout << "Nhap sdt hoc sinh: ";
+		getline(cin, Sdt);
+	} while (Sdt.length() < 9 || Sdt.length() > 11 || Kiem_tra_chuoi_so(Sdt) != Sdt.length());
+	do {
+		cout << "Nhap diem trung binh: ";
+		cin >> DTB;
+	} while (DTB > 10 || DTB < 0 );
+}
+
+void HocSinh::Xuat()
+{
+	cout << "Ho ten: " << Hoten << endl;
+	cout << "Mssv :" << Mssv << endl;
+	cout << "Sdt: " << Sdt << endl;
+	cout << "Diem tb: " << DTB << endl;
+	
+}
+
+
+//Fill Source
+#include <iostream>
+#include "HocSinh.h"
+
+using namespace std;
+int main()
+{
+	HocSinh a;
+	a.Nhap();
+   //############################
+	cout << endl;
+	a.Xuat();
+	
+
+}
+
+
+
