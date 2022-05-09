@@ -74,6 +74,7 @@ MangSoNguyen MangSoNguyen::operator=(const MangSoNguyen& a)
     
     for (int i = 0; i < a.kichthuoc; i++) 
     {
+    
         this->dulieu[i] = a.dulieu[i];
     }
 
