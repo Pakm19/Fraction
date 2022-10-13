@@ -1,0 +1,8 @@
+########
+Bài tập 2: Viết chương trình C++ cài đặt đối tượng số phức, trong đó số phức được định nghĩa
+gồm có phần thực và phần ảo với kiểu dữ liệu là số nguyên. Hãy cài đặt các thao tác trên đối
+tượng phân số này:
+• Nhập số phức
+• Xuất số phức vừa nhập theo dạng: a + bi (Với a, b lần lượt là phần thực và phần ảo)
+• Nhập vào 2 số phức, xuất ra kết quả cộng, trừ, nhân, chia của 2 số phức vừa nhập.
+#########
