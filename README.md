@@ -11,3 +11,14 @@
  ------------- | ---------------------- |---------------------------|------------------------- 
  19521994      | Ngô Thành Phát         |https://github.com/Pakm19  |19521994@gm.uit.edu.vn   |
  
+ ## GIỚI THIỆU MÔN HỌC
+* **Tên môn học:** Lập trình hướng đối tượng
+* **Mã môn học:** IT002
+* **Mã lớp:** IT002.L22.MMCL - VN
+* **Năm học:** HK2 (2020 - 2021)
+* **Giảng viên**: TS.Nguyễn Tấn Toàn và  KS. Quan Chí Khánh An
+
+## QUÁ TRÌNH
+### Chương 1: Các đặc điểm mới của C++.
+
+ 
