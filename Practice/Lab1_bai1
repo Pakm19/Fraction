@@ -1,4 +1,14 @@
-# L
+
+##########
+Bài tập 1: Viết chương trình C++ cài đặt đối tượng phân số, trong đó phân số được định nghĩa
+gồm có tử số và mẫu số với kiểu dữ liệu là số nguyên. Hãy cài đặt các thao tác trên đối tượng
+phân số này:
+• Nhập phân số
+• Xuất phân số vừa nhập theo 2 dạng:
+o Xuất theo định dạng tử số / mẫu số
+o Xuất theo định dạng kết quả phép chia của tử số và mẫu số (số thập phân)
+• Nhập vào 2 phân số, xuất ra kết quả cộng, trừ, nhân, chia của 2 phân số vừa nhập
+#########
 // FRACTION.H
 Basic operations with fractions
 Basic operations with fractions
