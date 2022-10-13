@@ -1,0 +1,69 @@
+#########
+Bài tập 3: Viết chương trình C++ cài đặt đối tượng điểm trong không gian Oxy, trong đó một
+điểm được định nghĩa gồm có tọa độ x và tọa độ y đều là số thực. Hãy cài đặt các thao tác trên
+đối tượng điểm này:
+• Nhập một điểm và xuất điểm vừa nhập ra màn hình
+• Nhập 2 điểm và xuất ra khoảng cách giữa 2 điểm vừa nhập trong không gian Oxy
+#####
+
+#####File.h
+#pragma once
+#include <iostream>
+
+using namespace std;
+class Diem_Oxy
+{
+private:
+	int Ox;
+	int Oy;
+public:
+	void Nhap();
+	void Xuat();
+	void Khoangcach(Diem_Oxy, Diem_Oxy);
+};
+
+#######File.cpp
+#include "Diem_Oxy.h"
+#include <math.h>
+
+void Diem_Oxy::Nhap()
+{
+	cout << "Nhap Ox: ";
+	cin >> Ox;
+	cout << "Nhap Oy: ";
+	cin >> Oy;
+
+
+}
+void Diem_Oxy::Xuat()
+{
+	int x = this->Ox;
+	int y = this->Oy;
+	cout << "(" << x << "," << y << ")";
+}
+
+void Diem_Oxy::Khoangcach(Diem_Oxy a, Diem_Oxy b)
+{
+	double k;
+	k =  sqrt(pow((b.Ox - a.Ox), 2) + pow((b.Oy - a.Oy), 2));
+	cout << k;
+
+}
+
+#####Source.cpp
+#include <iostream>
+#include "Diem_Oxy.h"
+
+using namespace std;
+
+int main()
+{
+	Diem_Oxy a, b, y;
+	a.Nhap();
+	b.Nhap();
+	y.Khoangcach(a, b);
+	
+
+
+	return 0;
+}
