@@ -1,3 +1,7 @@
+############
+2. Cài đặt các phương thức tạo lập (Constructor), tạo lập sao chép, hủy bỏ cho
+lớp Phân số đã làm trong bài thực hành trước.
+##########
 #pragma once
 #include <iostream>
 #include <math.h>
