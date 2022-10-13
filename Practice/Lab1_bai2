@@ -6,3 +6,94 @@ tượng phân số này:
 • Xuất số phức vừa nhập theo dạng: a + bi (Với a, b lần lượt là phần thực và phần ảo)
 • Nhập vào 2 số phức, xuất ra kết quả cộng, trừ, nhân, chia của 2 số phức vừa nhập.
 #########
+
+#####File.h
+#pragma once
+#include <iostream>
+using namespace std;
+class SoPhuc
+{
+private:
+	int Real;
+	int Fake;
+public:
+	void Nhap_So_Phuc();
+	void Xuat_So_Phuc();
+	void Tong(SoPhuc a, SoPhuc b);
+	void Hieu(SoPhuc a, SoPhuc b);
+	void Tich(SoPhuc a, SoPhuc b);
+	void Thuong(SoPhuc a, SoPhuc b);
+
+};
+  
+
+#########File.cpp
+#include "SoPhuc.h"
+#include <math.h>
+
+void SoPhuc::Nhap_So_Phuc()
+{
+	cout << "Nhap phan real: ";
+	cin >> Real;
+	
+	cout << "Nhap phan fake: ";
+	cin >> Fake;
+}
+
+void SoPhuc::Xuat_So_Phuc()
+{
+   int	a = this->Real;
+   int b = this->Fake;
+   cout << a << "+" << b << "i";
+}
+
+void SoPhuc::Tong(SoPhuc a, SoPhuc b)
+{
+	cout << "Tong: ";
+	SoPhuc k;
+	k.Real = a.Real + b.Real;
+	k.Fake = a.Fake + b.Fake;
+	cout << k.Real << "+" << k.Fake << "i" << endl;
+}
+void SoPhuc::Hieu(SoPhuc a, SoPhuc b)
+{
+	cout << "Hieu: ";
+	SoPhuc k;
+	k.Real = a.Real - b.Real;
+	k.Fake = a.Fake - b.Fake;
+	cout << k.Real << "-" << k.Fake << "i" << endl;
+}
+void SoPhuc::Tich(SoPhuc a, SoPhuc b)
+{
+	cout << "Tich: ";
+	SoPhuc k;
+	k.Real = a.Real * b.Real - a.Fake * b.Fake;
+	k.Fake = a.Real * b.Fake + a.Fake * b.Real;
+	cout << k.Real << "*" << k.Fake << "i" << endl;
+}
+void SoPhuc::Thuong(SoPhuc a, SoPhuc b)
+{
+	cout << "Thuong: ";
+	SoPhuc k;
+	k.Real = a.Real * b.Real + a.Fake * b.Fake / pow(b.Real, 2) + pow(b.Fake, 2);
+	k.Fake = b.Real * a.Fake - a.Real * b.Fake / pow(b.Real, 2) + pow(b.Fake, 2);
+	cout << k.Real << "*" << k.Fake << "i" << endl;
+}
+
+######Source.cpp
+#include <iostream>
+#include "SoPhuc.h"
+
+using namespace std;
+int main()
+{
+	SoPhuc a, a1, Tong, Hieu, Tich, Thuong;
+	a.Nhap_So_Phuc();
+	a1.Nhap_So_Phuc();
+	//a.Xuat_So_Phuc();
+	Tong.Tong(a, a1);
+	Hieu.Hieu(a, a1);
+	Tich.Tich(a, a1);
+	Thuong.Thuong(a, a1);
+	return 0;
+}
