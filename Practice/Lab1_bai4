@@ -1,0 +1,141 @@
+#######
+Bài tập 4: Xây dựng lớp Candidate (Thí sinh) gồm các thuộc tính: mã, tên, ngày tháng năm
+sinh, điểm thi Toán, Văn, Anh và các phương thức cần thiết.
+Xây dựng lớp TestCandidate để kiểm tra lớp trên:
+• Nhập vào n thí sinh (n do người dùng nhập) và xuất ra màn hình thông tin của từng thí
+sinh (mã, tên, ngày tháng năm sinh, điểm thi Toán, Văn, Anh, điểm trung bình Toán,
+Văn, Anh)
+• In ra thông tin về các thí sinh có tổng điểm lớn hơn 15
+########
+
+####File.h
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+
+class ThiSinh
+{
+private:
+	int MS;
+	string Name;
+	string NgaySinh;
+	float Diem_Toan;
+	float Diem_Van;
+	float Diem_Anh;
+
+public:
+	void Nhap_Thong_Tin();
+	void Xuat_Thong_Tin();
+};
+
+#pragma once
+#include <iostream>
+#include "Thi_Sinh.h"
+#include <vector>
+class TEST_ThiSinh
+{
+private:
+	float DiemT;
+	float DiemA;
+	float DiemV;
+	ThiSinh a;
+public:
+	void Nhap();
+	void Xuat();
+	float ThiSinh_Hon_15Diem();
+};
+
+#######File.cpp
+#include "Thi_Sinh.h"
+
+void ThiSinh::Nhap_Thong_Tin()
+{
+	cout << "Nhap Ma So: ";
+	cin.ignore();
+	cin >> MS;
+	cout << "Nhap ten: ";
+	cin.ignore();
+	getline(cin, Name);
+	cout << "Ngay Sinh: ";
+	cin.ignore();
+	getline(cin, NgaySinh);
+	cout << "Nhap Diem Toan: ";
+	cin >> Diem_Toan;
+	cout << "Nhap Diem Van: ";
+	cin >> Diem_Van;
+	cout << "Nhap Diem Anh: ";
+	cin >> Diem_Anh;
+}
+void ThiSinh::Xuat_Thong_Tin()
+{
+	cout << "Ma So: " << MS << endl;
+	cout << "Ten: " << Name << endl;
+	cout << "Sinh ngay: " << NgaySinh << endl;
+	cout << "Diem Toan: " << Diem_Toan << endl;
+	cout << "Diem Anh: " << Diem_Anh << endl;
+	cout << "Diem Van: " << Diem_Van << endl;
+
+}
+
+#include "TEST_ThiSinh.h"
+
+void TEST_ThiSinh::Nhap()
+{
+	a.Nhap_Thong_Tin();
+	cout << "Nhap Diem TB Toan: ";
+	cin >> DiemT;
+	cout << "Nhap Diem TB Anh: ";
+	cin >> DiemA;
+	cout << "Nhap Diem TB Van: ";
+	cin >> DiemV;
+}
+
+void TEST_ThiSinh::Xuat()
+{
+	a.Xuat_Thong_Tin();
+	cout << "Diem TB Toan: " << DiemT << " Diem TB Anh: " << DiemA << "Diem TB Van: " << DiemV;
+
+}
+
+float TEST_ThiSinh::ThiSinh_Hon_15Diem()
+{
+	float S = DiemT + DiemA + DiemV;
+	return S;
+}
+
+#####Source.cpp
+#include <iostream>
+#include "TEST_ThiSinh.h"
+#include "Thi_Sinh.h"
+#include <vector>
+//#include "Thi_Sinh.h"
+
+using namespace std;
+int main()
+{
+	vector<TEST_ThiSinh*> x;
+	int n;
+	cout << "Nhap so luong thi sinh: ";
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		TEST_ThiSinh* ts = new  TEST_ThiSinh;
+		cout << "              Thi sinh thu " << i + 1 << endl;
+		ts->Nhap();
+		x.push_back(ts);
+	};
+	cout << "\n Thong tin thi sinh ";
+	for (int i = 0; i < x.size(); i++)
+	{
+		cout << "\nThi sinh thu " << i + 1 << endl;
+		x[i]->Xuat();
+	};
+	cout << "\nThi sinh tren 15 diem" << endl;
+	for (int i = 0; i < x.size(); i++) 
+	{
+		if (x[i]->ThiSinh_Hon_15Diem() > 15)
+			x[i]->Xuat();
+
+	}
+}
