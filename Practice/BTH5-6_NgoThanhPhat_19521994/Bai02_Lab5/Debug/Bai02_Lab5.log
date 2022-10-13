@@ -1,0 +1,4 @@
+﻿  NongTrai.cpp
+C:\Users\LENOVO\source\repos\Bai02_Lab5\Bai02_Lab5\NongTrai.cpp(44,19): warning C4018: '<': signed/unsigned mismatch
+C:\Users\LENOVO\source\repos\Bai02_Lab5\Bai02_Lab5\NongTrai.cpp(52,19): warning C4018: '<': signed/unsigned mismatch
+  Bai02_Lab5.vcxproj -> C:\Users\LENOVO\source\repos\Bai02_Lab5\Debug\Bai02_Lab5.exe
