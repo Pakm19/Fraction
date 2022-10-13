@@ -1,0 +1,299 @@
+#########
+. Viết chương trình C++ cài đặt đối tượng Lớp Học, trong đó mỗi lớp học gồm có thông
+tin được mô tả như sau:
+o Danh sách học sinh, là một vector các đối tượng Học Sinh
+o Thêm một học sinh mới vào trong danh sách học sinh, thông báo ra màn hình
+nếu thêm thành công, nếu đã có học sinh đó trong lóp (trùng họ tên theo từng ký
+tự), xuất ra màn hình “Da co hoc sinh trong lop”
+o Xóa một học sinh đã có trong danh sách khỏi danh sách học sinh, dữ liệu nhập
+vào là họ tên của học sinh đó, thông báo ra màn hình nếu xóa thành công, nếu
+không tìm thấy, xuất ra màn hình “Khong co hoc sinh trong lop”
+o Xuất toàn bộ thông tin tất cả học sinh trong lớp học
+o Xuất toàn bộ thông tin các học sinh trong lớp học có điểm trung bình > 8
+o Nhập danh sách học sinh từ tập tin “LopHoc.txt” nằm chung ở thư mục chứa
+project với cấu trúc tập tin được mô tả như sau: (các dữ liệu từ tập tin này đều là
+thông tin học sinh hợp lệ)
+§ Dòng đầu tiên: 1 số nguyên n, thể hiện cho tổng số học sinh
+§ n * 4 dòng tiếp theo, mỗi 4 dòng sẽ gồm có thông tin:
+• Họ tên học sinh
+• Mã số học sinh
+• Số điện thoại
+• Điểm trung bình (điểm phần thập phân được cách bằng ký tự dấu
+chấm)
+#########
+//File.h 
+#pragma once
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+class HocSinh
+{
+private:
+	string Hoten;
+	string Mssv;
+	string Sdt;
+	float DTB;
+public:
+	void Nhap();
+	void Xuat();
+	string getHoten();
+	float getDTB();
+
+};
+
+#pragma once
+#include <iostream>
+#include <vector>
+#include "HocSinh.h"
+#include <string>
+
+class LopHoc
+{
+private:
+	string name_lop;
+	string ma_lop;
+	int nHocsinh;
+	vector <HocSinh*> student;
+	HocSinh* a;
+public:
+	void Nhap();
+	void Xuat();
+	void Them_hoc_sinh();
+	void Xoa_hoc_sinh();
+	void Diem_TB_lon_8();
+	void myFile();
+    
+};
+
+//File.cpp
+
+#include "HocSinh.h"
+#include <string>
+
+using namespace std;
+
+int Kiem_tra_chuoi_so(string s)
+{
+	int dem = 0;
+	for (int i = 0;i < s.length();i++)
+	{
+		if (s[i] >= 48 && s[i] <= 57)
+		{
+			dem++;
+		}
+		else if (s[i] = 0)
+		{
+			dem++;
+		}
+	}
+	return dem;
+}
+
+/// <summary>
+/// /ngo thanh phat 
+/// </summary>
+void HocSinh::Nhap()
+{
+	do{
+		cout << "Nhap ho ten hoc sinh:";
+		cin.ignore();
+		getline(cin,Hoten);
+	} while (Hoten.length() > 24 || Kiem_tra_chuoi_so(Hoten) > 0);
+	//cin.ignore();
+	do {
+		cout << "Nhap mssv: ";
+		getline(cin, Mssv);
+	} while (Mssv.length() < 8  ||  Mssv.length() > 8);
+	do
+	{
+		cout << "Nhap sdt hoc sinh: ";
+		getline(cin, Sdt);
+	} while (Sdt.length() < 9 || Sdt.length() > 11 || Kiem_tra_chuoi_so(Sdt) != Sdt.length());
+	do {
+		cout << "Nhap diem trung binh: ";
+		cin >> DTB;
+	} while (DTB > 10 || DTB < 0 );
+}
+
+void HocSinh::Xuat()
+{
+	cout << "Ho ten: " << Hoten << endl;
+	cout << "Mssv: " << Mssv << endl;
+	cout << "Sdt: " << Sdt << endl;
+	cout << "Diem tb: " << DTB << endl;
+	cout << "*************************" << endl;
+	
+}
+
+string HocSinh::getHoten()
+{
+	return Hoten;
+}
+
+float HocSinh::getDTB()
+{
+	return DTB;
+}
+
+
+#include "LopHoc.h"
+#include "HocSinh.h"
+#include <vector>
+#include <fstream>
+#include <string>
+
+
+void LopHoc::Nhap()
+{
+	cout << "Nhap ten lop: ";
+	//cin.ignore();
+	getline(cin, name_lop);
+	cout << "Nhap ma lop: ";
+	getline(cin, ma_lop);
+	cout << "Nhap so luong hoc sinh: ";
+	cin >> nHocsinh;
+
+	for (int i = 0;i < nHocsinh;i++)
+	{
+		cout << "///////////////////////////" << endl;
+		cout << "Nhap thong tin hoc sinh thu " << i+1 << ":" << endl;
+		a = new HocSinh;
+		a->Nhap();
+		this->student.push_back(a);
+	}
+}
+void LopHoc::Xuat()
+{
+	cout << endl;
+	cout << "***************************" << endl;
+	cout << "Ten lop: " << name_lop <<endl;
+	cout << "Ma lop: " << ma_lop << endl;
+	cout << "*************************" << endl;
+	for (int i = 0;i < student.size();i++)
+	{
+		student[i]->Xuat();
+	}
+}
+
+void LopHoc::Them_hoc_sinh()
+{
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+		a = new HocSinh;
+		cout << "Nhap thong tin hoc sinh them: " << endl;
+		a->Nhap();
+		string Ten;
+		Ten = a->getHoten();
+		for (int i = 0;i < student.size();i++)
+		{
+			if (Ten == student[i]->getHoten())
+				{
+				cout << "Da co hoc sinh trong lop" << endl;
+				  break;
+				}
+			else
+			{
+				cout << "Da them hoc sinh thanh cong" << endl;
+				this->student.push_back(a);
+				break;
+			}
+		}
+		
+}
+
+void LopHoc::Xoa_hoc_sinh()
+{
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+	string a;
+	cout << "Nhap ten hoc sinh can xoa: " << endl;
+	cin.ignore();
+	getline(cin, a);
+	for (int i = 0;i < student.size();i++)
+	{  
+		if (a == student[i]->getHoten())
+		{
+			student.erase(student.begin() + i);
+			break;
+		}
+		else
+		{
+			cout << "Khong co hoc sinh trong lop" << endl;
+			break;
+		}
+	}
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+
+}
+
+void LopHoc::Diem_TB_lon_8()
+{
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+	cout << "***************************" << endl;
+	cout << "Sinh Vien Co Dtb Lon Hon 8: " << endl << endl;
+	for (int i = 0;i < student.size();i++)
+	{
+		if (student[i]->getDTB() > 8.0)
+		{
+			student[i]->Xuat();
+		}
+
+	}
+
+}
+
+void LopHoc::myFile()
+{
+	fstream myFile; 
+	myFile.open("LopHoc.txt", ios::in); 
+
+	string data;
+	float Dtb = 0;
+	int n;
+	myFile >> n;
+	for (int i = 0; i < n; i++){
+		getline(myFile, data); 
+
+		getline(myFile, data);   
+		cout << "Ho ten: " << data << endl;
+		
+		getline(myFile, data); 
+		cout << "Mssv: " << data << endl;
+	
+		getline(myFile, data);   
+		cout << "Sdt: " << data << endl;
+		
+		myFile >> Dtb;		    
+		cout << "Diem trung binh: " << Dtb << endl;
+	}
+	myFile.close();
+}
+
+//File Source
+
+ #include <iostream>
+#include "HocSinh.h"
+#include "LopHoc.h"
+#include <fstream>
+#include <string>
+
+using namespace std;
+int main()
+{
+	LopHoc a;
+	a.Nhap();
+	a.Xuat();
+	a.Them_hoc_sinh();
+	a.Xuat();
+	a.Xoa_hoc_sinh();
+	a.Xuat();
+	a.Diem_TB_lon_8();
+	a.myFile();
+	
+}
