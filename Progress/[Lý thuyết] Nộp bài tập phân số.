@@ -1,1 +1,342 @@
+##########Phanso.h
+#pragma once
+#include <iostream>
+#include <math.h>
 
+using namespace std;
+class PHAN_SO
+{
+private: 
+	int TU;
+	int MAU;
+public:
+	PHAN_SO();
+	~PHAN_SO();
+	PHAN_SO(int, int);
+	PHAN_SO(int);
+	PHAN_SO(const PHAN_SO&);
+
+
+	void setTU(int);
+	void setMAU(int);
+	int getTU() const;
+	int getMAU() const; 
+	void set(int, int);
+	
+
+	void Nhap();
+	void Xuat()const;
+
+	void RutGon();
+
+
+	void Sum(const PHAN_SO&)const;
+	void Sub(const PHAN_SO&)const;
+	void Mul(const PHAN_SO&)const;
+	void Div(const PHAN_SO&)const;
+
+	//void operator+(PHAN_SO)const;
+	void operator*(PHAN_SO)const;
+	void operator/(PHAN_SO)const;
+	//friend PHAN_SO operator-(PHAN_SO, PHAN_SO);
+	bool operator==(PHAN_SO)const;
+	void operator++(int)const;
+	void operator--(int)const;
+
+	friend PHAN_SO operator +(PHAN_SO, PHAN_SO);
+	friend PHAN_SO operator -(PHAN_SO, PHAN_SO);
+	friend PHAN_SO operator *(PHAN_SO, PHAN_SO);
+	friend PHAN_SO operator /(PHAN_SO, PHAN_SO);
+	operator double() const
+	{
+		return double(TU) / MAU;
+	}
+	
+	friend istream& operator >>(istream& is, PHAN_SO& p);
+	friend ostream& operator <<(ostream& os, PHAN_SO p);
+	
+};
+
+
+
+######Phanso.cpp
+#include "PHAN_SO.h"
+
+PHAN_SO::PHAN_SO()
+{
+	set(0, 1);
+}
+
+PHAN_SO::~PHAN_SO()
+{
+
+}
+PHAN_SO::PHAN_SO(int TU, int MAU)
+{
+	set(TU, MAU);
+}
+
+PHAN_SO::PHAN_SO(int TU)
+{
+	set(TU, 1);
+}
+
+PHAN_SO::PHAN_SO(const PHAN_SO& b)
+{
+	set(b.TU, b.MAU);
+}
+
+void PHAN_SO::setTU(int TU)
+{
+	this->TU = TU;
+}
+
+void PHAN_SO::setMAU(int MAU)
+{
+	this->MAU = MAU;
+}
+
+int PHAN_SO::getTU()const
+
+{
+	return this->TU;
+}
+
+int PHAN_SO::getMAU()const
+{
+	return this->MAU;
+}
+
+void PHAN_SO::set(int TU, int MAU)
+{
+	setTU(TU);
+	setMAU(MAU);
+}
+void PHAN_SO::Nhap()
+{
+	cout << "Nhap tu so:";
+	cin >> TU;
+	cout << "Nhap mau so:";
+	cin >> MAU;
+}
+
+void PHAN_SO::Xuat()const
+{ 
+	int a = this->TU;
+	int b = this->MAU;
+	if (b == 0)
+	{
+		cout << "mau bang 0";
+	}
+	else
+	{
+		if (a % b == 0)
+		{
+			cout << a / b;
+		}
+		else
+		{
+			cout << this->TU << "/" << this->MAU;
+		}
+	}
+	
+}
+
+
+void PHAN_SO::RutGon()
+{
+	int a = this->TU;
+	int b = this->MAU;
+	int ucln;
+	if ( a == 0 || b == 0)
+	{
+		ucln = a + b;
+	}
+	else
+	{
+		a = abs(a);
+		b = abs(b);
+		while (a != b)
+		{
+			if (a > b)
+			{
+				 a -= b;
+			}
+			else
+			{
+				b -= a;
+			}
+		}
+		ucln = a;
+	}
+	
+	///////////////////
+     this->TU /= ucln;
+     this->MAU /= ucln;
+	/*if (x * y < 0)
+	{
+		if (x > 0)
+		{
+			this->TU *= -1;
+			this->MAU = abs(this->MAU);
+		}
+	}
+	else
+	{
+		if (x < 0)
+		{
+			this->TU = abs(this->TU);
+			this->MAU = abs(this->MAU);
+		}
+	}*/
+	  
+}
+void PHAN_SO::Sum(const PHAN_SO& b) const
+{
+	cout << "Tong:";
+	PHAN_SO x((this->TU * b.MAU) + (this->MAU * b.TU), this->MAU * b.MAU);
+	x.RutGon();
+	x.Xuat();
+
+}
+
+void PHAN_SO::Sub(const PHAN_SO& b) const
+{
+	cout << "Hieu:";
+	PHAN_SO x((this->TU * b.MAU) - (this->MAU * b.TU), this->MAU * b.MAU);
+	x.RutGon();
+	x.Xuat();
+}
+
+void PHAN_SO::Mul(const PHAN_SO& b) const
+{
+	cout << "Tich: ";
+	PHAN_SO x(b.TU * this->TU, b.MAU * this->MAU);
+	x.RutGon();
+	x.Xuat();
+}
+
+void PHAN_SO::Div(const PHAN_SO& b) const
+{
+	cout << "Thuong: ";
+	PHAN_SO x(b.TU * this->MAU, b.MAU * this->TU);
+	x.RutGon();
+	x.Xuat();
+}
+/*void PHAN_SO::operator+(PHAN_SO b) const
+{
+	cout << "Tong:";
+	PHAN_SO x((this->TU * b.MAU) + (this->MAU * b.TU), this->MAU * b.MAU);
+	x.RutGon();
+	x.Xuat();
+
+}*/
+
+void PHAN_SO::operator*(PHAN_SO b) const
+{
+	cout << "Tich:";
+	PHAN_SO x((this->TU * b.TU), this->MAU * b.MAU);
+	x.RutGon();
+	x.Xuat();
+
+}
+
+void PHAN_SO::operator/(PHAN_SO b) const
+{
+	cout << "Thuong:";
+	PHAN_SO x((this->TU * b.MAU), this->MAU * b.TU);
+	x.RutGon();
+	x.Xuat();
+
+
+}
+
+bool PHAN_SO::operator==(PHAN_SO b) const
+{
+
+	
+	return this->TU * b.MAU == this->MAU * b.TU;
+}
+
+void PHAN_SO::operator++(int a) const
+{
+
+	cout << "operator++ :";
+	a = 1;
+	PHAN_SO x((this->TU * a) + (this->MAU * a), this->MAU * a);
+	x.Xuat();
+}
+
+void PHAN_SO::operator--(int b)const
+{
+	cout << "operator--:";
+	b = 1;
+	PHAN_SO x((this->TU * b) + (this->MAU * b), this->MAU * b);
+	x.Xuat();
+
+}
+
+PHAN_SO operator +(PHAN_SO a, PHAN_SO b)
+{
+	return PHAN_SO(a.TU * b.MAU + b.TU * a.MAU, a.MAU * b.MAU);
+}
+
+PHAN_SO operator -(PHAN_SO a, PHAN_SO b)
+{
+	return PHAN_SO(a.TU * b.MAU - b.TU * a.MAU, a.MAU * b.MAU);
+}
+
+PHAN_SO operator *(PHAN_SO a, PHAN_SO b)
+{
+	return PHAN_SO(a.TU * b.TU, a.MAU * b.MAU);
+}
+PHAN_SO operator /(PHAN_SO a, PHAN_SO b)
+{
+	return PHAN_SO(a.TU * b.MAU, a.MAU * b.TU);
+}
+
+istream& operator >> (istream& is, PHAN_SO& p)
+{
+	is >> p.TU >> p.MAU;
+	while (p.MAU==0)
+	{
+		cout << "Nhap lai mau:";
+		is >> p.MAU;
+	}
+	return is;
+}
+
+ostream& operator << (ostream& os, PHAN_SO p)
+{
+	// TODO: insert return statement here
+	os << p.TU;
+	if (p.TU != 0 && p.MAU != 1)
+	{
+		os << "/" << p.MAU;
+	}
+	return os;
+}
+
+#########Source.cpp
+
+//#include "PHAN_SO.cpp"
+#include "PHAN_SO.h"
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main()
+{
+	//PHAN_SO a(1, 1), b(2, 2), c(0, 1), d(1, 1);
+	PHAN_SO a, b;
+	cout << "Nhap a:";
+	cin >> a;
+	cout << "NHap b:";
+	cin >> b;
+	cout <<float( a) << endl;
+	cout << float(b) << endl;
+	cout << float(a + b) << endl;
+	cout << float(a - b) << endl;
+
+
+	
+}
