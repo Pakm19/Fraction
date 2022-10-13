@@ -1,0 +1,136 @@
+##########
+Cài đặt lại lớp Số phức và định nghĩa các phép toán +, -, *, /, ==, != trên số phức.
+Định nghĩa phép toán << và >> để xuất và nhập dữ liệu vào số phức.
+##########
+//File.h
+#pragma once
+#include <iostream>
+#include <math.h>
+using namespace std;
+class Sophuc
+{
+private:
+	int thuc;
+	int ao;
+public:
+	Sophuc();
+	Sophuc(int, int);
+	Sophuc(const Sophuc&);
+
+	//void nhap();
+	void xuat();
+
+	Sophuc operator+(const Sophuc&);
+	Sophuc operator-(const Sophuc&);
+	Sophuc operator*(const Sophuc&);
+	Sophuc operator/(const Sophuc&);
+
+	bool operator==(const Sophuc&);
+	bool operator!=(const Sophuc&);
+};
+//File.cpp
+#include "Sophuc.h"
+#include <iostream>
+
+Sophuc::Sophuc()
+{
+	this->thuc = 0;
+	this->ao = 0;
+}
+
+Sophuc::Sophuc(int thuc, int ao)
+{
+	this->thuc = thuc;
+	this->ao = ao;
+}
+Sophuc::Sophuc(const Sophuc& a)
+{
+	this->thuc = a.thuc;
+	this->ao = a.ao;
+}
+
+void Sophuc::xuat()
+{
+	int a = this->thuc;
+	int b = this->ao;
+	cout << a << "+" << b << "i";
+}
+
+Sophuc Sophuc::operator+(const Sophuc& a)
+{
+ 
+	Sophuc kq;
+	kq.thuc = this->thuc + a.thuc;
+	kq.ao = this->ao + a.ao;
+	return kq;
+	 
+}
+Sophuc Sophuc::operator-(const Sophuc& a)
+{
+	Sophuc kq;
+	kq.thuc = this->thuc - a.thuc;
+	kq.ao = this->ao - a.ao;
+	return kq;
+
+}
+Sophuc Sophuc::operator*(const Sophuc& a)
+{
+	Sophuc kq;
+	kq.thuc = this->thuc * a.thuc - this->ao * a.ao ;
+	kq.ao = this->thuc * a.ao + this->ao * a.thuc;
+	return kq;
+
+}
+Sophuc Sophuc::operator/(const Sophuc& a)
+{
+	Sophuc kq;
+	kq.thuc = (this->thuc * a.thuc + this->ao * a.ao) / (pow(a.thuc, 2) + pow(a.ao, 2));
+	kq.ao = (this->thuc * a.thuc - this->ao * a.ao) / (pow(a.thuc, 2) + pow(a.ao, 2));
+	return kq;
+
+}
+
+bool Sophuc::operator==(const Sophuc& a)
+{
+	if (this->thuc == a.thuc && this->ao == a.ao)
+		return true;
+	else
+	{
+		return false;
+	}
+}
+bool Sophuc::operator!=(const Sophuc& a)
+{
+	if (this->thuc != a.thuc || this->ao != a.ao)
+		return true;
+	else
+	{
+		return false;
+	}
+}
+//File Source
+#include <iostream>
+#include "Sophuc.h"
+
+using namespace std;
+
+int main()
+{
+	Sophuc a(1, 2), b(1, 5), c;
+	c = a + b; cout << "Tong: "; c.xuat(); cout << "\n";
+	c = a - b; cout << "Hieu: "; c.xuat(); cout << "\n";
+	c = a * b; cout << "Tich: "; c.xuat(); cout << "\n";
+	c = a / b; cout << "Thuong: "; c.xuat(); cout << "\n";
+
+	cout << "a == b" << endl;
+	if (a == b) { cout << " true "; }
+	else { cout << " false "; }
+
+	cout << "\na != b" << endl;
+	if (a != b) { cout << " true "; }
+	else { cout << " false "; }
+	
+	
+	
+
+}
