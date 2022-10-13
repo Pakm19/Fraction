@@ -1,0 +1,174 @@
+##########
+Xét đa thức theo biến x (đa thức một biến) bậc n có dạng như sau:
+P(X)=an xn + an-1 xn-1 + an-2 xn-2 +...+ a0
+Trong đó: n là bậc của đa thức. a0, a1, a2,..., an là các hệ số tương ứng với từng
+bậc của đa thức.
+Định nghĩa lớp DaThuc biểu diễn khái niệm đa thức với các thao tác sau:
+a) Phương thức khởi tạo một đa thức có bậc bằng 0.
+b) Nhập đa thức
+c) Xuất đa thức
+d) Tính giá trị của đa thức khi biết giá trị của x
+e) Cộng hai đa thức
+f) Trừ hai đa thức
+Viết chương trình cho phép người dùng nhập vào hai đa thức, xuất các đa
+thức ra màn hình, tính tổng , hiệu hai đa thức và xuất kết quả ra màn hình. 
+(Ảnh đa thức ở file image)
+########
+
+###File.h
+#pragma once
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+class DaThuc
+{
+private:
+	int n;
+	int* Arr;
+public:
+	DaThuc();
+	void Nhap();
+	void Xuat();
+	void Tinh_Gia_Tri();
+	void Tong(DaThuc);
+	void Hieu(DaThuc);
+
+
+};
+
+#####File.cpp
+#include "DaThuc.h"
+
+DaThuc::DaThuc()
+{
+	n = 0;
+	Arr = new int[100];
+	Arr[0] = 0;
+}
+
+void DaThuc::Nhap()
+{
+	cout << "Nhap bac cua da thuc: ";
+	cin >> n;
+	Arr = new int[100];
+	for (int i = 0; i <= n; i++) {
+		cout << "Nhap he so cua x^" << i << ": ";
+		cin >> Arr[i];
+
+	}
+}
+
+void DaThuc::Xuat()
+{
+	for (int i = n; i >= 1; i--) {
+		cout << Arr[i] << "x^" << i << " ";
+		if (Arr[i - 1] >= 0)
+			cout << " + ";
+	}
+	cout << Arr[0] << endl;
+}
+
+void DaThuc::Tinh_Gia_Tri()
+{
+	int S = 0;
+	n = this->n;
+	int x;
+	cout << "Nhap gia tri x: ";
+	cin >> x;
+	for (int i = 0;i <= n;i++)
+	{		
+		
+		S += Arr[i] * pow(x, i);;
+	}
+	cout << S;
+}
+
+void DaThuc::Tong(DaThuc b)
+{
+	DaThuc k;
+	if (this->n == b.n)
+	{
+		k.n = this->n;
+		k.Arr = new int[n + 1];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] = this->Arr[i];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] += b.Arr[i];
+
+	}
+	else if (this->n > b.n)
+	{
+		k.n = this->n;
+		k.Arr = new int[n + 1];
+		for (int i = 0; i <= this->n; i++)
+			k.Arr[i] = this->Arr[i];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] += b.Arr[i];
+	}
+	else
+	{
+		k.n = b.n;
+		k.Arr = new int[n + 1];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] = b.Arr[i];
+		for (int i = this->n; i >= 0; i--)
+			k.Arr[i] += this->Arr[i];
+	}
+	 k.Xuat();
+}
+
+void DaThuc::Hieu(DaThuc b)
+{
+	DaThuc k;
+	if (this->n == b.n)
+	{
+		k.n = this->n;
+		k.Arr = new int[n + 1];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] = this->Arr[i];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] -= b.Arr[i];
+
+	}
+	else if (this->n > b.n)
+	{
+		k.n = this->n;
+		k.Arr = new int[n + 1];
+		for (int i = 0; i <= this->n; i++)
+			k.Arr[i] = this->Arr[i];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] -= b.Arr[i];
+	}
+	else
+	{
+		k.n = b.n;
+		k.Arr = new int[n + 1];
+		for (int i = 0; i <= b.n; i++)
+			k.Arr[i] = b.Arr[i];
+		for (int i = this->n; i >= 0; i--)
+			k.Arr[i] -= this->Arr[i];
+	}
+	k.Xuat();
+}
+######Source.cpp
+#include <iostream>
+#include "DaThuc.h"
+#include <math.h>
+
+using namespace std;
+int main()
+{
+	DaThuc a, b;
+	a.Nhap();
+    b.Nhap();
+	a.Xuat();
+    b.Xuat();
+	cout << "\n";
+    a.Tinh_Gia_Tri();
+	cout << "\n";
+	a.Tong(b);
+	cout << "\n";
+	a.Hieu(b);
+	
+}
