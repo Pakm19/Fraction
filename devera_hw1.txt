@@ -1,6 +1,0 @@
-vẽ wirefame 3 trang e-commerce
-- homepage
--
-- git 
-tạo tk github
-tạo repository (code place)
