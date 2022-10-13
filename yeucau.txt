@@ -1,3 +1,0 @@
-1. trình bày về các tiêu chuẩn để đánh giá ngôn ngữ lập trình
-2. các so sánh đánh giá giữa các nnlt
-3. các yếu tố tác động chi phối thiết kế nnlt
