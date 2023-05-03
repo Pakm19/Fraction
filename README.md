@@ -7,7 +7,7 @@
 <h1 align="center"><b>Object Oriented Programming</b></h>
 
 ## SINH VIÊN
- MSSV          | Họ và Tên              | Github                    | Email                   |
+ MSSV          | Full Name            | Github                    | Email                   |
  ------------- | ---------------------- |---------------------------|------------------------- 
  19521994      | Ngô Thành Phát         |https://github.com/RobertNgo19  |19521994@gm.uit.edu.vn   |
  
