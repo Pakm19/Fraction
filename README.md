@@ -11,13 +11,14 @@
  ------------- | ---------------------- |---------------------------|------------------------- 
  19521994      | Ngô Thành Phát         |https://github.com/RobertNgo19  |19521994@gm.uit.edu.vn   |
  
- ## GIỚI THIỆU MÔN HỌC
-* **Tên môn học:** Lập trình hướng đối tượng
-* **Mã môn học:** IT002
-* **Mã lớp:** IT002.L22.MMCL - VN
-* **Năm học:** HK2 (2020 - 2021)
-* **Giảng viên**: TS.Nguyễn Tấn Toàn và TS.Quan Chí Khánh An
- ## Ngôn Ngữ Lập Trình: C++
+ ## COURSE INTRODUCTION
+* **Subject Title:** Object Oriented Programming
+* **Subject Code:** IT002
+* **Class Code:** IT002.L22.MMCL - VN
+* **Lecturers**: TS.Nguyễn Tấn Toàn và TS.Quan Chí Khánh An
+
+ ## Programing Language: C++
+
  
 
  
